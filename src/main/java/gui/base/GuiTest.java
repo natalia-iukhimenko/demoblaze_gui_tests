@@ -11,7 +11,6 @@ import ru.stqa.selenium.factory.WebDriverPool;
 public class GuiTest {
     private WebDriver driver;
     private String baseURL = "https://www.demoblaze.com";
-    // private String baseURL = System.getProperty("baseURL");
 
     @BeforeTest
     protected void initWebDriver() {

@@ -11,7 +11,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 public class GuiEntity {
     protected WebDriver driver;
-    private final int MAX_TIMEOUT = 5; // to config
+    protected final int MAX_TIMEOUT = 5;
 
     protected GuiEntity(WebDriver driver) {
         this.driver = driver;

@@ -28,27 +28,18 @@ public class HomePage extends GuiEntity {
 
     public SignUpForm openSignUpForm() {
         clickOn(signUpButton);
-        waitForVisibilityOf(signUpForm, 5); // todo: default timeout
+        waitForVisibilityOf(signUpForm, MAX_TIMEOUT);
         return new SignUpForm(driver);
     }
 
     public SignInForm openSignInForm() {
         clickOn(signInButton);
-        waitForVisibilityOf(signInForm, 5); // todo: default timeout
+        waitForVisibilityOf(signInForm, MAX_TIMEOUT);
         return new SignInForm(driver);
     }
 
     public String getWelcomeMessage() {
         waitForVisibilityOf(welcomeLink, 5);
         return welcomeLink.getText();
-    }
-
-    public boolean isSignUpFormHidden() {
-        return false;
-        // wait for form to be shown, style = 'display: none';
-        // aria-hidden = 'true'
-        // //*[@id='signInModal']
-        // @aria-hidden = 'true'
-        // true if the form hidden
     }
 }
