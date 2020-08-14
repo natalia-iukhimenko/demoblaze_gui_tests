@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="RegressionTestSuite">
+    <test name="SignUp">
+        <classes>
+            <class name="gui.SignUpTest" />
+        </classes>
+    </test>
+    <test name="SignIn">
+        <classes>
+            <class name="gui.SignInTest" />
+        </classes>
+    </test>
+</suite>

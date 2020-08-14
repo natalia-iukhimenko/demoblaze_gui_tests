@@ -17,8 +17,7 @@ public class SignUpTest extends GuiTest {
 
     @BeforeMethod
     public void openSignUpForm() {
-        signUpForm = openHomePage()
-                .openSignUpForm();
+        signUpForm = openHomePage().openSignUpForm();
     }
 
     @Test
@@ -56,16 +55,6 @@ public class SignUpTest extends GuiTest {
         softly.assertTrue(signUpForm.isUsernameFieldEmpty(), "Username is cleared on form close");
         softly.assertTrue(signUpForm.isPasswordFieldEmpty(), "Password is cleared on form close");
         softly.assertAll("'Sign Up' form fields are not cleared on form close");
-    }
-
-    @Test
-    public void signUpFormIsHiddenOnCloseButtonClick() {
-
-    }
-
-    @Test
-    public void signUpFormIsHiddenOnCrossButtonClick() {
-
     }
 
     @Test

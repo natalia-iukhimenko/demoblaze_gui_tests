@@ -3,6 +3,7 @@ package gui;
 import api.SignUpService;
 import gui.base.GuiTest;
 import gui.elements.SignInForm;
+import gui.elements.SignUpForm;
 import gui.pages.HomePage;
 import org.openqa.selenium.Alert;
 import org.testng.annotations.BeforeClass;
@@ -19,16 +20,15 @@ public class SignInTest extends GuiTest {
     private String username, password;
 
     @BeforeTest
-    public void openSignInForm() {
-        signInForm = openHomePage()
-                .openSignInForm();
+    public void registerAsTestUser() {
+        username = getUniqueUsername();
+        password = getValidPassword();
+        openHomePage().openSignUpForm().registerAs(username, password).accept();
     }
 
     @BeforeClass
-    public void createTestUser() {
-        username = getUniqueUsername();
-        password = getValidPassword();
-        SignUpService.signUpAs(username, password);
+    public void openSignInForm() {
+        signInForm = openHomePage().openSignInForm();
     }
 
     @Test
@@ -39,13 +39,17 @@ public class SignInTest extends GuiTest {
     }
 
     @Test
-    public void signWithWrongUsername() {
-        // User does not exist.
+    public void signInWithWrongUsername() {
+        Alert userDoesNotExistAlert = signInForm.failSignInWith(getUniqueUsername(), password);
+        assertEquals(userDoesNotExistAlert.getText(), "User does not exist.");
+        signInForm.accept(userDoesNotExistAlert);
     }
 
     @Test
-    public void signWithWrongPassword() {
-        // Wrong password.
+    public void signInWithWrongPassword() {
+        Alert wrongPasswordAlert = signInForm.failSignInWith(username, username);
+        assertEquals(wrongPasswordAlert.getText(), "Wrong password.");
+        signInForm.accept(wrongPasswordAlert);
     }
 
     @Test(dataProvider = "emptyUsernameOrPasswordProvider")
@@ -53,21 +57,6 @@ public class SignInTest extends GuiTest {
         Alert fillDataAlert = signInForm.failSignInWith(username, password);
         assertEquals(fillDataAlert.getText(), "Please fill out Username and Password.");
         signInForm.accept(fillDataAlert);
-    }
-
-    @Test
-    public void allFieldsAreClearedOnFormClose() {
-
-    }
-
-    @Test
-    public void signUpFormIsHiddenOnCloseButtonClick() {
-
-    }
-
-    @Test
-    public void signUpFormIsHiddenOnCrossButtonClick() {
-
     }
 
     @Test
