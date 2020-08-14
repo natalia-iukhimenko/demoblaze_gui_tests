@@ -41,7 +41,7 @@ public class SignUpForm extends GuiEntity {
         setUsername(username);
         setPassword(password);
         confirmSignUp();
-        waitForAlertIsPresent(5); //todo
+        waitForAlertIsPresent(MAX_TIMEOUT);
         return driver.switchTo().alert();
     }
 
@@ -51,7 +51,7 @@ public class SignUpForm extends GuiEntity {
     }
 
     public HomePage close() {
-        WebElement closeButton = driver.findElement(By.xpath("//*[@id='signInModal']//*[text()='Close']")); // to refactor
+        WebElement closeButton = driver.findElement(By.xpath("//*[@id='signInModal']//*[text()='Close']"));
         clickOn(closeButton);
         return new HomePage(driver);
     }

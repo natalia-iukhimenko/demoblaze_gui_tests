@@ -47,7 +47,7 @@ public class SignInForm extends GuiEntity {
         setUsername(username);
         setPassword(password);
         confirmSignIn();
-        waitForAlertIsPresent(5); //todo
+        waitForAlertIsPresent(MAX_TIMEOUT);
         return driver.switchTo().alert();
     }
 
@@ -55,7 +55,6 @@ public class SignInForm extends GuiEntity {
         return isMaskedInput(passwordField);
     }
 
-    // may be return this
     public HomePage accept(Alert alert) {
         alert.accept();
         return new HomePage(driver);
