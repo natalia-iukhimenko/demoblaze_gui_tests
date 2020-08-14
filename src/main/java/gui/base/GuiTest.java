@@ -14,8 +14,7 @@ public class GuiTest {
 
     @BeforeTest
     protected void initWebDriver() {
-        //String browserName = System.getProperty("browser");
-        String browserName = "chrome";
+        String browserName = System.getProperty("browser");
         if (browserName.equals("firefox")) {
             driver = WebDriverPool.DEFAULT.getDriver(new FirefoxOptions());
         }

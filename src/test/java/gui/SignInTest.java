@@ -1,9 +1,7 @@
 package gui;
 
-import api.SignUpService;
 import gui.base.GuiTest;
 import gui.elements.SignInForm;
-import gui.elements.SignUpForm;
 import gui.pages.HomePage;
 import org.openqa.selenium.Alert;
 import org.testng.annotations.BeforeClass;

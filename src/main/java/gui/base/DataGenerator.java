@@ -1,7 +1,6 @@
 package gui.base;
 
 import com.github.javafaker.Faker;
-
 import java.util.Date;
 
 public class DataGenerator {
