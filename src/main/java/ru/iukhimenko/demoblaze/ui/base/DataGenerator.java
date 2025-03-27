@@ -1,4 +1,4 @@
-package gui.base;
+package ru.iukhimenko.demoblaze.ui.base;
 
 import com.github.javafaker.Faker;
 import java.util.Date;
@@ -10,8 +10,11 @@ public class DataGenerator {
         return username.append(uniqueSuffix).toString();
     }
 
-    public static String getValidPassword() {
-        int minimalLength = 6;
+    public static String getValidPassword(int minimalLength ) {
         return new Faker().number().digits(minimalLength);
+    }
+
+    public static String getValidPassword() {
+        return getValidPassword(6);
     }
 }

@@ -1,7 +1,7 @@
-package gui.elements;
+package ru.iukhimenko.demoblaze.ui.elements;
 
-import gui.base.GuiEntity;
-import gui.pages.HomePage;
+import ru.iukhimenko.demoblaze.ui.base.GuiEntity;
+import ru.iukhimenko.demoblaze.ui.pages.HomePage;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

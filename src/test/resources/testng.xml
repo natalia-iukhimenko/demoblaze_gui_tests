@@ -2,12 +2,12 @@
 <suite name="RegressionTestSuite">
     <test name="SignUp">
         <classes>
-            <class name="gui.SignUpTest" />
+            <class name="ru.iukhimenko.demoblaze.tests.ui.SignUpTest" />
         </classes>
     </test>
     <test name="SignIn">
         <classes>
-            <class name="gui.SignInTest" />
+            <class name="ru.iukhimenko.demoblaze.tests.ui.SignInTest" />
         </classes>
     </test>
 </suite>

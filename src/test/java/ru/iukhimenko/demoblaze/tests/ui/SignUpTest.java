@@ -1,16 +1,19 @@
-package gui;
+package ru.iukhimenko.demoblaze.tests.ui;
 
-import api.SignUpService;
-import gui.base.GuiTest;
-import gui.elements.SignUpForm;
-import gui.pages.HomePage;
-import org.openqa.selenium.Alert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import static gui.base.DataGenerator.*;
-import static org.testng.Assert.*;
+import ru.iukhimenko.demoblaze.api.SignUpService;
+import ru.iukhimenko.demoblaze.ui.base.GuiTest;
+import ru.iukhimenko.demoblaze.ui.elements.SignUpForm;
+import ru.iukhimenko.demoblaze.ui.pages.HomePage;
+import org.openqa.selenium.Alert;
+import org.testng.annotations.BeforeMethod;
+
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+import static ru.iukhimenko.demoblaze.ui.base.DataGenerator.getUniqueUsername;
+import static ru.iukhimenko.demoblaze.ui.base.DataGenerator.getValidPassword;
 
 public class SignUpTest extends GuiTest {
     private SignUpForm signUpForm;

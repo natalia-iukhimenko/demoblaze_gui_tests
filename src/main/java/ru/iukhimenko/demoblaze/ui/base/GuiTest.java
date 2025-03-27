@@ -1,6 +1,7 @@
-package gui.base;
+package ru.iukhimenko.demoblaze.ui.base;
 
-import gui.pages.HomePage;
+import ru.iukhimenko.demoblaze.SysConfig;
+import ru.iukhimenko.demoblaze.ui.pages.HomePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
@@ -8,9 +9,10 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import ru.stqa.selenium.factory.WebDriverPool;
 
+import static ru.iukhimenko.demoblaze.SysConfig.CONFIG;
+
 public class GuiTest {
     private WebDriver driver;
-    private String baseURL = "https://www.demoblaze.com";
 
     @BeforeTest
     protected void initWebDriver() {
@@ -24,7 +26,7 @@ public class GuiTest {
     }
 
     protected HomePage openHomePage() {
-        driver.get(baseURL);
+        driver.get(CONFIG.baseUrl());
         driver.manage().window().maximize();
         return new HomePage(driver);
     }

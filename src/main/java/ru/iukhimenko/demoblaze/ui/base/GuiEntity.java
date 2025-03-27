@@ -1,10 +1,12 @@
-package gui.base;
+package ru.iukhimenko.demoblaze.ui.base;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
@@ -39,17 +41,17 @@ public class GuiEntity {
     }
 
     protected void waitForClickabilityOf(WebElement element, int timeout) {
-        WebDriverWait wait = new WebDriverWait(driver, timeout);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
         wait.until(elementToBeClickable(element));
     }
 
     protected void waitForVisibilityOf(WebElement element, int timeout) {
-        WebDriverWait wait = new WebDriverWait(driver, timeout);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
         wait.until(visibilityOf(element));
     }
 
     protected Alert waitForAlertIsPresent(int timeout) {
-        WebDriverWait wait = new WebDriverWait(driver, timeout);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
         return wait.until(alertIsPresent());
     }
 
