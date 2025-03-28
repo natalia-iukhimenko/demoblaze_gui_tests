@@ -15,10 +15,10 @@
         <webdriver-factory.version>4.4</webdriver-factory.version>
         <rest-assured.version>5.5.1</rest-assured.version>
         <maven-compiler-plugin.version>11</maven-compiler-plugin.version>
-        <aspectj.version>3.14.0</aspectj.version>
         <allure-testng.version>2.29.1</allure-testng.version>
         <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
         <owner.version>1.0.12</owner.version>
+        <jackson.databind.version>2.18.3</jackson.databind.version>
         <allure-results.directory>${project.build.directory}/allure-results</allure-results.directory>
     </properties>
 
@@ -37,9 +37,6 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
-                    <argLine>
-                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-                    </argLine>
                     <suiteXmlFiles>
                         <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
@@ -92,6 +89,11 @@
             <groupId>org.aeonbits.owner</groupId>
             <artifactId>owner</artifactId>
             <version>${owner.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.databind.version}</version>
         </dependency>
     </dependencies>
 </project>
