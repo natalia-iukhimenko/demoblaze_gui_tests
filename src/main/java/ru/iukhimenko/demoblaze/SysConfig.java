@@ -10,6 +10,7 @@ public interface SysConfig extends Config {
     SysConfig CONFIG = ConfigFactory.create(SysConfig.class);
 
     String baseUrl();
+    String apiBaseUrl();
     String browser();
     String environment();
     @DefaultValue("false")
