@@ -1,9 +1,8 @@
-package gui.pages;
+package ru.iukhimenko.demoblaze.ui.pages;
 
-import gui.base.GuiEntity;
-import gui.elements.SignInForm;
-import gui.elements.SignUpForm;
-import org.openqa.selenium.By;
+import ru.iukhimenko.demoblaze.ui.base.GuiEntity;
+import ru.iukhimenko.demoblaze.ui.elements.SignInForm;
+import ru.iukhimenko.demoblaze.ui.elements.SignUpForm;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -38,7 +37,7 @@ public class HomePage extends GuiEntity {
         return new SignInForm(driver);
     }
 
-    public String getWelcomeMessage() {
+    public String getWelcomeMessageText() {
         waitForVisibilityOf(welcomeLink, 5);
         return welcomeLink.getText();
     }

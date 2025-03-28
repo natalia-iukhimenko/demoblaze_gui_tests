@@ -1,16 +1,19 @@
-package gui;
+package ru.iukhimenko.demoblaze.tests.ui;
 
-import api.SignUpService;
-import gui.base.GuiTest;
-import gui.elements.SignUpForm;
-import gui.pages.HomePage;
-import org.openqa.selenium.Alert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import static gui.base.DataGenerator.*;
-import static org.testng.Assert.*;
+import ru.iukhimenko.demoblaze.api.SignUpService;
+import ru.iukhimenko.demoblaze.ui.base.GuiTest;
+import ru.iukhimenko.demoblaze.ui.elements.SignUpForm;
+
+import org.openqa.selenium.Alert;
+import org.testng.annotations.BeforeMethod;
+
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+import static ru.iukhimenko.demoblaze.ui.base.DataGenerator.getUniqueUsername;
+import static ru.iukhimenko.demoblaze.ui.base.DataGenerator.getValidPassword;
 
 public class SignUpTest extends GuiTest {
     private SignUpForm signUpForm;
@@ -21,9 +24,9 @@ public class SignUpTest extends GuiTest {
     }
 
     @Test
-    public void successfulSignUp() {
+    public void checkSuccessfulSignUpMessage() {
         Alert successfulSignUp = signUpForm.registerAs(getUniqueUsername(), getValidPassword());
-        assertEquals(successfulSignUp.getText(), "Sign up successful.", "Alert text assertion failed, ");
+        assertEquals(successfulSignUp.getText(), "Sign up successful.", "Info message after successful sign up doesn't match the expected value");
         signUpForm.accept(successfulSignUp);
     }
 
@@ -33,34 +36,32 @@ public class SignUpTest extends GuiTest {
         SignUpService.signUpAs(username, password);
 
         Alert userAlreadyExists = signUpForm.registerAs(username, getValidPassword());
-        assertEquals(userAlreadyExists.getText(), "This user already exist.", "Alert text assertion failed, ");
+        assertEquals(userAlreadyExists.getText(), "This user already exist.", "Error message after signing up with not unique username doesn't match the expected value");
         signUpForm.accept(userAlreadyExists);
     }
 
     @Test(dataProvider = "emptyUsernameOrPasswordProvider")
     public void signUpWithEmptyCredentials(String username, String password) {
         Alert emptyUsernameOrPassword = signUpForm.registerAs(username, password);
-        assertEquals(emptyUsernameOrPassword.getText(), "Please fill out Username and Password.", "Alert text assertion failed, ");
+        assertEquals(emptyUsernameOrPassword.getText(), "Please fill out Username and Password.", "Error message after signing up with empty credentials doesn't match the expected value");
         signUpForm.accept(emptyUsernameOrPassword);
     }
 
     @Test
-    public void allFieldsAreClearedOnFormClose() {
-        HomePage home = signUpForm
-                .setUsername("test username")
+    public void allFieldsAreClearedOnSignUpFormClose() {
+        signUpForm.setUsername("test username")
                 .setPassword("test password")
                 .close();
-        SignUpForm reopenedForm = home.openSignUpForm();
         SoftAssert softly = new SoftAssert();
         softly.assertTrue(signUpForm.isUsernameFieldEmpty(), "Username is cleared on form close");
         softly.assertTrue(signUpForm.isPasswordFieldEmpty(), "Password is cleared on form close");
-        softly.assertAll("'Sign Up' form fields are not cleared on form close");
+        softly.assertAll("'Sign Up' form fields are not cleared after the form is closed");
     }
 
     @Test
     public void passwordFieldIsMaskedTest() {
         signUpForm.setPassword(getValidPassword());
-        assertTrue(signUpForm.isPasswordFieldMasked());
+        assertTrue(signUpForm.isPasswordFieldMasked(), "Password field is not masked on 'Sign Up' form");
     }
 
     @DataProvider
@@ -71,4 +72,3 @@ public class SignUpTest extends GuiTest {
         };
     }
 }
-

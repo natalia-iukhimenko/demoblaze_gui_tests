@@ -1,15 +1,15 @@
-package gui;
+package ru.iukhimenko.demoblaze.tests.ui;
 
-import gui.base.GuiTest;
-import gui.elements.SignInForm;
-import gui.pages.HomePage;
+import ru.iukhimenko.demoblaze.ui.base.GuiTest;
+import ru.iukhimenko.demoblaze.ui.elements.SignInForm;
+import ru.iukhimenko.demoblaze.ui.pages.HomePage;
 import org.openqa.selenium.Alert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import static gui.base.DataGenerator.getUniqueUsername;
-import static gui.base.DataGenerator.getValidPassword;
+import static ru.iukhimenko.demoblaze.ui.base.DataGenerator.getUniqueUsername;
+import static ru.iukhimenko.demoblaze.ui.base.DataGenerator.getValidPassword;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
