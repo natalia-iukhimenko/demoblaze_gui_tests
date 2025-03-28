@@ -1,6 +1,5 @@
 package ru.iukhimenko.demoblaze.ui.base;
 
-import ru.iukhimenko.demoblaze.SysConfig;
 import ru.iukhimenko.demoblaze.ui.pages.HomePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -16,7 +15,7 @@ public class GuiTest {
 
     @BeforeTest
     protected void initWebDriver() {
-        String browserName = System.getProperty("browser");
+        String browserName = CONFIG.browser();
         if (browserName.equals("firefox")) {
             driver = WebDriverPool.DEFAULT.getDriver(new FirefoxOptions());
         }

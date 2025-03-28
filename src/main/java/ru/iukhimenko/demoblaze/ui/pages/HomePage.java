@@ -37,7 +37,7 @@ public class HomePage extends GuiEntity {
         return new SignInForm(driver);
     }
 
-    public String getWelcomeMessage() {
+    public String getWelcomeMessageText() {
         waitForVisibilityOf(welcomeLink, 5);
         return welcomeLink.getText();
     }

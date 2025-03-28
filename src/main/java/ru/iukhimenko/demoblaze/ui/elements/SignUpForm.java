@@ -61,10 +61,10 @@ public class SignUpForm extends GuiEntity {
     }
 
     public boolean isUsernameFieldEmpty() {
-        return !usernameField.getText().equals("");
+        return !usernameField.getText().isEmpty();
     }
 
     public boolean isPasswordFieldEmpty() {
-        return !passwordField.getText().equals("");
+        return !passwordField.getText().isEmpty();
     }
 }

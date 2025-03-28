@@ -10,7 +10,7 @@ public class SignUpService {
         requestBody.put("username", username);
         requestBody.put("password", password);
 
-        given().baseUri(CONFIG.baseUrl()).contentType("application/json")
+        given().baseUri(CONFIG.apiBaseUrl()).contentType("application/json")
                 .body(requestBody)
                 .when().post("/signup")
                 .then().statusCode(200);
