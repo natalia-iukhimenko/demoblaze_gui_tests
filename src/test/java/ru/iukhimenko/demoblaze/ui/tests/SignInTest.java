@@ -1,4 +1,4 @@
-package ru.iukhimenko.demoblaze.tests.ui;
+package ru.iukhimenko.demoblaze.ui.tests;
 
 import ru.iukhimenko.demoblaze.ui.base.GuiTest;
 import ru.iukhimenko.demoblaze.ui.elements.SignInForm;
@@ -8,10 +8,10 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import static ru.iukhimenko.demoblaze.ui.base.DataGenerator.getUniqueUsername;
-import static ru.iukhimenko.demoblaze.ui.base.DataGenerator.getValidPassword;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
+import static ru.iukhimenko.demoblaze.ui.base.DataGenerator.getUniqueUsername;
+import static ru.iukhimenko.demoblaze.ui.base.DataGenerator.getValidPassword;
 
 public class SignInTest extends GuiTest {
     private SignInForm signInForm;

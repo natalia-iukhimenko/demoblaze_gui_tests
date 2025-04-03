@@ -1,4 +1,4 @@
-package ru.iukhimenko.demoblaze.tests.ui;
+package ru.iukhimenko.demoblaze.ui.tests;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
