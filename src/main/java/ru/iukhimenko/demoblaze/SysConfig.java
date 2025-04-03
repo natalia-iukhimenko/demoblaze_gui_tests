@@ -11,8 +11,8 @@ public interface SysConfig extends Config {
 
     String baseUrl();
     String apiBaseUrl();
+    @DefaultValue("chrome")
     String browser();
-    String environment();
-    @DefaultValue("false")
-    String isHeadless();
+    @DefaultValue("true")
+    Boolean isRemote();
 }
