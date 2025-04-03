@@ -1,4 +1,4 @@
-package ru.iukhimenko.demoblaze.tests.ui;
+package ru.iukhimenko.demoblaze.ui.tests;
 
 import ru.iukhimenko.demoblaze.ui.base.GuiTest;
 import ru.iukhimenko.demoblaze.ui.elements.SignInForm;
@@ -8,10 +8,10 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import static ru.iukhimenko.demoblaze.ui.base.DataGenerator.getUniqueUsername;
-import static ru.iukhimenko.demoblaze.ui.base.DataGenerator.getValidPassword;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
+import static ru.iukhimenko.demoblaze.ui.base.DataGenerator.getUniqueUsername;
+import static ru.iukhimenko.demoblaze.ui.base.DataGenerator.getValidPassword;
 
 public class SignInTest extends GuiTest {
     private SignInForm signInForm;
@@ -30,37 +30,37 @@ public class SignInTest extends GuiTest {
     }
 
     @Test
-    public void usernameIsDisplayedIfSignInSuccessfully() {
+    public void usernameIsDisplayedIfSignedInSuccessfully() {
         HomePage home = signInForm.signInWith(username, password);
-        String expectedMessageText = new StringBuilder("Welcome ").append(username).toString();
-        assertEquals(home.getWelcomeMessage(), expectedMessageText);
+        String expectedMessageText = "Welcome " + username;
+        assertEquals(home.getWelcomeMessageText(), expectedMessageText, "Welcome text on home page doesn't match the expected value");
     }
 
     @Test
     public void signInWithWrongUsername() {
         Alert userDoesNotExistAlert = signInForm.failSignInWith(getUniqueUsername(), password);
-        assertEquals(userDoesNotExistAlert.getText(), "User does not exist.");
+        assertEquals(userDoesNotExistAlert.getText(), "User does not exist.", "Error message for signing in with a wrong username doesn't match the expected value");
         signInForm.accept(userDoesNotExistAlert);
     }
 
     @Test
     public void signInWithWrongPassword() {
         Alert wrongPasswordAlert = signInForm.failSignInWith(username, username);
-        assertEquals(wrongPasswordAlert.getText(), "Wrong password.");
+        assertEquals(wrongPasswordAlert.getText(), "Wrong password.", "Error message for signing in with a wrong password doesn't match the expected value");
         signInForm.accept(wrongPasswordAlert);
     }
 
     @Test(dataProvider = "emptyUsernameOrPasswordProvider")
     public void signWithEmptyCredentials(String username, String password) {
         Alert fillDataAlert = signInForm.failSignInWith(username, password);
-        assertEquals(fillDataAlert.getText(), "Please fill out Username and Password.");
+        assertEquals(fillDataAlert.getText(), "Please fill out Username and Password.", "Error message for signing in with empty credentials doesn't match the expected value");
         signInForm.accept(fillDataAlert);
     }
 
     @Test
     public void passwordFieldIsMaskedTest() {
         signInForm.setPassword(getValidPassword());
-        assertTrue(signInForm.isPasswordFieldMasked());
+        assertTrue(signInForm.isPasswordFieldMasked(), "Password field is not masked on 'Sign In' form");
     }
 
     @DataProvider

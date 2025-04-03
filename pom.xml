@@ -14,12 +14,12 @@
         <javafaker.version>1.0.2</javafaker.version>
         <webdriver-factory.version>4.4</webdriver-factory.version>
         <rest-assured.version>5.5.1</rest-assured.version>
-        <maven-compiler-plugin.version>11</maven-compiler-plugin.version>
         <allure-testng.version>2.29.1</allure-testng.version>
         <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
         <owner.version>1.0.12</owner.version>
         <jackson.databind.version>2.18.3</jackson.databind.version>
         <allure-results.directory>${project.build.directory}/allure-results</allure-results.directory>
+        <java.version>17</java.version>
     </properties>
 
     <build>
@@ -27,9 +27,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
                 <configuration>
-                    <source>${maven-compiler-plugin.version}</source>
-                    <target>${maven-compiler-plugin.version}</target>
+                    <source>17</source>
+                    <target>17</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -49,6 +50,8 @@
                 </configuration>
             </plugin>
         </plugins>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <testSourceDirectory>src/test/java</testSourceDirectory>
     </build>
 
     <dependencies>
@@ -61,7 +64,6 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.github.javafaker</groupId>
@@ -72,18 +74,22 @@
             <groupId>ru.stqa.selenium</groupId>
             <artifactId>webdriver-factory</artifactId>
             <version>${webdriver-factory.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.jupiter</groupId>
+                    <artifactId>junit-jupiter-engine</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
             <version>${rest-assured.version}</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
             <version>${allure-testng.version}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.aeonbits.owner</groupId>
