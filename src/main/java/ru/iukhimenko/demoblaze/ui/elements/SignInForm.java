@@ -15,6 +15,8 @@ public class SignInForm extends GuiEntity {
     private WebElement passwordField;
     @FindBy(xpath = "//*[@onclick='logIn()']")
     private WebElement logInButton;
+    @FindBy(xpath = "//div[@id = 'logInModal']//button[contains(text(), 'Close')]")
+    private WebElement closeButton;
 
     public SignInForm(WebDriver driver) {
         super(driver);
@@ -57,6 +59,11 @@ public class SignInForm extends GuiEntity {
 
     public HomePage accept(Alert alert) {
         alert.accept();
+        return new HomePage(driver);
+    }
+
+    public HomePage close() {
+        closeButton.click();
         return new HomePage(driver);
     }
 }

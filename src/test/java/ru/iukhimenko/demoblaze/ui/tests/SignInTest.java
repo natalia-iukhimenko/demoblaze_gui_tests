@@ -1,13 +1,11 @@
 package ru.iukhimenko.demoblaze.ui.tests;
 
+import org.testng.annotations.*;
 import ru.iukhimenko.demoblaze.ui.base.GuiTest;
 import ru.iukhimenko.demoblaze.ui.elements.SignInForm;
 import ru.iukhimenko.demoblaze.ui.pages.HomePage;
 import org.openqa.selenium.Alert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 import static ru.iukhimenko.demoblaze.ui.base.DataGenerator.getUniqueUsername;
@@ -17,15 +15,11 @@ public class SignInTest extends GuiTest {
     private SignInForm signInForm;
     private String username, password;
 
-    @BeforeTest
+    @BeforeMethod
     public void registerAsTestUser() {
         username = getUniqueUsername();
         password = getValidPassword();
         openHomePage().openSignUpForm().registerAs(username, password).accept();
-    }
-
-    @BeforeClass
-    public void openSignInForm() {
         signInForm = openHomePage().openSignInForm();
     }
 
@@ -61,6 +55,7 @@ public class SignInTest extends GuiTest {
     public void passwordFieldIsMaskedTest() {
         signInForm.setPassword(getValidPassword());
         assertTrue(signInForm.isPasswordFieldMasked(), "Password field is not masked on 'Sign In' form");
+        signInForm.close();
     }
 
     @DataProvider
